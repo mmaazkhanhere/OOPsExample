@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
+import chalk from "chalk";
 import { Person } from "./personClass.js";
 import { Student } from "./studentClass.js";
 class Program {
@@ -15,7 +16,7 @@ class Program {
             }); //user enters a value for personality property of the Person class
             let myPerson = new Person(); //object of Person is created
             myPerson.askQuestion(input.input); //askQuestion function of the Person is called here
-            console.log('You are  ' + myPerson.getPersonality()); //personality of the user displayed
+            console.log(chalk.blueBright('You are  ' + myPerson.getPersonality())); //personality of the user displayed
             let userName = await inquirer.prompt({
                 //user enters the name 
                 name: 'userName',
@@ -25,12 +26,12 @@ class Program {
             let myStudent = new Student(); //new object of Student class is created
             myStudent.Name = userName.userName; //user input is passed to the proeprty Name of Student class
             //user name and personality is displayed
-            console.log(`Your name is ${myStudent.Name} and your personality type is ${myStudent.getPersonality()}`);
+            console.log(chalk.bgGray(`Your name is ${myStudent.Name} and your personality type is ${myStudent.getPersonality()}`));
             //since askQuestion for Student class is not called, default value will be shown to the user
         }
         catch {
             //the catch statement defines the code that handles the error
-            console.log('Please enter an integer value.');
+            console.log(chalk.bgRed('Please enter an integer value.'));
         }
     }
 }
